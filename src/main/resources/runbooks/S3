@@ -1,0 +1,42 @@
+## S3 Configuration and state backup
+
+Save the current running configuration to startup configuration before making the change.
+Create an additional backup on the approved TFTP server at 192.0.2.20.
+Record the current software version and key operational state with the change record.
+
+Commands:
+`copy running-config startup-config`
+`copy running-config tftp:`
+
+Example TFTP destination:
+`192.0.2.20`
+
+Do not continue if the configuration backup fails.
+
+## S4 Image transfer and MD5 verification
+
+Copy the approved IOS-XE image from the approved TFTP server at 192.0.2.20 to bootflash.
+Confirm that the file is present and that sufficient storage remains.
+Verify the MD5 checksum of the transferred image against the checksum supplied with the approved change package.
+
+Commands:
+`copy tftp: bootflash:`
+`dir bootflash:`
+`verify /md5 bootflash:<image-name>`
+
+Do not continue if the calculated MD5 checksum does not match the approved checksum.
+
+## S5 Boot variable configuration
+
+Configure the new IOS-XE image as the first boot option.
+Keep the currently working image configured as the second boot option so that it remains available for recovery.
+Verify the resulting boot configuration before scheduling the reload.
+
+Example:
+`boot system flash bootflash:<new-image-name>`
+`boot system flash bootflash:<old-image-name>`
+
+Verification:
+`show running-config | include boot`
+
+Do not remove the previous working image during the change.
