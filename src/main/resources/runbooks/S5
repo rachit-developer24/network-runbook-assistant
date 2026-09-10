@@ -1,0 +1,32 @@
+## S8 Post-checks
+
+After the router returns, confirm that it has booted the approved IOS-XE image.
+Repeat the interface and BGP checks recorded during S2 and compare the results with the pre-change baseline.
+Confirm that expected interfaces are operational and expected BGP neighbours have returned to their previous healthy state.
+
+Commands:
+`show version`
+`show ip interface brief`
+`show ip bgp summary`
+
+The upgrade is not considered successful until the post-check results are consistent with the approved pre-change baseline.
+
+## S9 Rollback criteria
+
+Start the backout process if the router fails to boot the approved image or if critical post-checks fail.
+Rollback must also be considered when important interfaces do not recover, expected BGP neighbours remain unavailable, or the device shows repeated instability after the upgrade.
+
+Do not improvise a recovery procedure.
+
+Follow:
+`RB-003: Rollback After Failed IOS-XE Upgrade`
+
+The engineer responsible for the change must record the reason that rollback was triggered.
+
+## S10 Closure and soak period
+
+Record the final IOS-XE version and the outcome of all post-checks in the change record.
+Record whether the upgrade completed successfully or required rollback.
+Continue normal monitoring during a 14-day soak period for unexpected instability associated with the new software.
+
+The change can be fully closed after the required evidence has been recorded and the applicable change-management process has been completed.

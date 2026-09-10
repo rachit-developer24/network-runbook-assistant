@@ -1,0 +1,23 @@
+# RB-001: IOS-XE Upgrade for ISR 4000
+Applies to: Cisco ISR 4000 devices running IOS-XE in bundle mode
+
+## S1 Scope and mode check
+
+Confirm that the target device is a Cisco ISR 4000 series router.
+Confirm the current IOS-XE version and boot configuration before proceeding.
+
+Commands:
+`show version`
+`show running-config | include boot`
+
+## S2 Pre-checks
+
+Confirm there is enough free space in bootflash for the new IOS-XE image.
+Record the current interface and BGP state so it can be compared after the upgrade.
+Confirm the ROMMON version is suitable for the planned software release.
+
+Commands:
+`dir bootflash:`
+`show version`
+`show ip interface brief`
+`show ip bgp summary`

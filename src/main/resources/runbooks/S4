@@ -1,0 +1,30 @@
+## S6 Change window and approval
+
+A production upgrade must only proceed under an approved change record.
+The engineer must have a valid CHG number and confirmation of the approved maintenance window.
+Where required by the change process, CAB approval must be recorded before the reload.
+
+Required information:
+- CHG number
+- approved target IOS-XE version
+- approved maintenance window
+- engineer responsible for the change
+- confirmed backout plan
+- required CAB approval
+
+If any mandatory approval or change information is missing, the upgrade must not proceed.
+
+## S7 Reload
+
+Perform the reload only inside the approved maintenance window.
+Where appropriate, schedule the reload and verify the scheduled time before allowing it to occur.
+The engineer must remain available to cancel the reload if the pre-change conditions are no longer valid.
+
+Commands:
+`reload at <time>`
+`show reload`
+
+To cancel a scheduled reload:
+`reload cancel`
+
+Confirm that monitoring and console access are available before the device reloads.
