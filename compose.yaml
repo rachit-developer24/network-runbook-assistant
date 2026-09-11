@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: pgvector/pgvector:pg17
+    container_name: runbook-postgres
+    environment:
+      POSTGRES_DB: runbookdb
+      POSTGRES_USER: runbook
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - "5432:5432"
+    volumes:
+      - runbook_pgdata:/var/lib/postgresql/data
+
+volumes:
+  runbook_pgdata:
